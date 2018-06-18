@@ -1,5 +1,7 @@
 # Nghttp01
 
+Based on http://ahex.co/consuming-a-restful-web-service-with-angular-4/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
