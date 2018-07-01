@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 })
 export class AppComponent {
   title = 'app';
+  mensaje = '';
 
   data: any = []
   author = {
@@ -18,16 +19,17 @@ export class AppComponent {
     LastName: ''
   }
 
-  dataHolaMundo: any = []
-  holaMundo = {
-    httpStatus: '',
-    message: ''
+  transfer = {
+    fromAccountNumber: '123-456-002',
+    toAccountNumber: '123-456-001',
+    amount: 1
   }
 
   constructor(public appService: AppService) { }
 
   ngOnInit() {
-    this.IndexPage();
+    //this.IndexPage();
+    this.TransferPage(this.transfer);
   }
 
   /* method to call get-api from app.service */
@@ -53,7 +55,20 @@ export class AppComponent {
         this.appService.getIndex()
           .subscribe(resp => {
             console.log(resp, "res");
-            this.dataHolaMundo = resp
+          },
+            error => {
+              console.log(error, "error");
+            })
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    TransferPage(transfer){
+      try {
+        this.appService.transferMoney(transfer)
+        .subscribe(resp => {
+            console.log(resp, "res");
           },
             error => {
               console.log(error, "error");
